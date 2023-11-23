@@ -1,1 +1,67 @@
+Leetcode 2540: Minimum Common Value
+
+Problem Statement: 
+Given two integer arrays nums1 and nums2, sorted in non-decreasing order, return the minimum integer common to both arrays. If there is no common integer amongst nums1 and nums2, return -1.
+
+Note that an integer is said to be common to nums1 and nums2 if both arrays have at least one occurrence of that integer.
+
+Example 1:
+
+Input: nums1 = [1,2,3], nums2 = [2,4]
+Output: 2
+Explanation: The smallest element common to both arrays is 2, so we return 2.
+Example 2:
+
+Input: nums1 = [1,2,3,6], nums2 = [2,3,4,5]
+Output: 2
+Explanation: There are two common elements in the array 2 and 3 out of which 2 is the smallest, so 2 is returned.
+
+My solution: 
+def getCommon(self, nums1, nums2):
+   x,y = 0,0
+
+   while (x < len(nums1) y < len(nums)):
+         if nums1[x] == nums[y]:
+            return nums[x]
+         elif nums[x] < nums[y]:
+              x += 1
+         else: 
+              y += 1
+
+   return -1
+
+** USE TWO POINTERS TO ITERATE
+
+Leetcode 1: Two Sum
+Problem Statement: 
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+My Solution: 
+def twoSum(self, nums, target):
+    prevMap = {} # Value:Index
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in prevMap:
+                return [prevMap[diff], i]
+            prevMap[n] = i
+    return 
+
 
