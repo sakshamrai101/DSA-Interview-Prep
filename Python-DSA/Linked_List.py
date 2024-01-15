@@ -68,19 +68,33 @@ class LinkedList:
             self.head = new_node
         self.length += 1
         return True
-    
+
+   # Remove elements from the front.  
     def pop_first(self):
+        # Empty List. 
         if self.head is None:
             return None
         res = self.head
+        # Only 1 element in list. 
         if self.length == 1:
             self.tail = None
             self.head = None
             return res.value 
+        
         self.head = self.head.next 
         self.length -= 1
 
         return res.value
+    
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None 
+
+        res = self.head 
+        for _ in range(index):
+            res = res.next
+        return res.value
+
 
 
 # New instance of LinkedList created. 
@@ -91,10 +105,12 @@ my_linked_list = LinkedList(4)
 my_linked_list.append_list(5)
 my_linked_list.append_list(6)
 my_linked_list.prepend(1)
-print("Popped Node", my_linked_list.pop_last())
-print("Popped Node", my_linked_list.pop_last())
-print("New node added to front:", my_linked_list.head.value)
-print("Popped Node from front:", my_linked_list.pop_first())
+#print("Popped Node", my_linked_list.pop_last())
+#print("Popped Node", my_linked_list.pop_last())
+#print("New node added to front:", my_linked_list.head.value)
+#print("Popped Node from front:", my_linked_list.pop_first())
+
+print("Element at 1st index is: ", my_linked_list.get(2))
 
 my_linked_list.print_list()
 
