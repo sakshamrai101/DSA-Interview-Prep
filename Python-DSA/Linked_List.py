@@ -232,7 +232,6 @@ my_linked_list.append_list(5)
 
 
 
-
 #my_linked_list.prepend(1)
 #my_linked_list.set_value(10, 10)
 #print("Popped Node", my_linked_list.pop_last())
