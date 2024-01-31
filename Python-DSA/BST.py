@@ -54,6 +54,12 @@ class BinarySearchTree:
                 temp = temp.right
 
         return False 
+    
+
+    def BFS(self):
+        current_node = self.root
+        queue = []
+        results = []
         
         
 
