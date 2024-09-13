@@ -68,8 +68,63 @@ class BinarySearchTree:
         
         return False
     
+    def bfs(self):
+        queue = []
+        result = []
+        current_node = self.root
+        queue.append(current_node)
+
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            result.append(current_node.value)
+
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+
+        return result 
     
+
+    def dfs_pre_order(self):
+        result = []
+
+        def traverse(current_node):
+            result.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
         
+        traverse(self.root)
+        return result 
+    
+    def dfs_post_order(self):
+        result = []
+
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+            result.append(current_node.value)
+        
+        traverse(self.root)
+        return result
+    
+    def dfs_in_order(self):
+        result = []
+
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            result.append(current_node.value)
+            if current_node.right is not None:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return result 
+
 
         
 
@@ -78,13 +133,15 @@ class BinarySearchTree:
 
 
 my_tree = BinarySearchTree()
-my_tree.insert(10)
-my_tree.insert(12)
-my_tree.insert(7)
-my_tree.insert(144)
-my_tree.insert(5)
-my_tree.insert(19)
-print(my_tree.root.right.right.left.value)
-print(my_tree.root.left.value)
-print(my_tree.root.value)
-print(my_tree.contains(100))
+my_tree.insert(47)
+my_tree.insert(21)
+my_tree.insert(76)
+my_tree.insert(18)
+my_tree.insert(27)
+my_tree.insert(52)
+my_tree.insert(82)
+
+print(my_tree.bfs())
+print(my_tree.dfs_pre_order())
+print(my_tree.dfs_post_order())
+print(my_tree.dfs_in_order())
