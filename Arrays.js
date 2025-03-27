@@ -144,16 +144,17 @@ class CustomArray {
         return false;
 
     }
+
 }
 
 
 const myArr = new CustomArray(5);
-myArr.append(1);
-myArr.append(2);
-myArr.append(3);
 myArr.append(4);
-myArr.append(5);
-myArr.append(6);
+myArr.append(19);
+myArr.append(922);
+myArr.append(67);
+myArr.append(333);
+myArr.append(0);
 
 
 // Some problems based on BS:
@@ -181,4 +182,102 @@ function smallestMissingNumber (nums) {
 }
 
 
-console.log(smallestMissingNumber([0, 1, 2, 3, 4, 6]));
+function partition (array, l, h) {
+    
+    // declare pointers to swap larger and greater values than pivot:
+    var pivot = array[l];
+    var i = l;
+    var j = h;
+
+    while (i < j) {
+
+        // find first larger element than pivot:
+        while (array[i] <= pivot && i < h) {
+            i ++;
+        }
+
+        // find the first smallest element than pivot:
+        while (array[j] > pivot && j > l) {
+            j--;
+        }
+
+        // swap larger and smaller element:
+        if (i < j) {
+            let temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
+    }
+
+    // Swap pivot element with j value:
+    let temp = array[l];
+    array[l] = array[j];
+    array[j] = temp;
+    return j;
+}
+
+function quickSort(array, l, h) {
+    if (l < h) {
+        let pivot = partition(array, l, h);
+        quickSort(array, l, pivot - 1);
+        quickSort(array, pivot + 1, h);
+    }
+}
+
+
+
+function mergeSort (array, low, high) {
+
+    // while there are elements:
+    if (low === high) {
+        return;
+    }
+    let mid = Math.floor((low + high) / 2);
+    mergeSort(array, low, mid);
+    mergeSort(array, mid + 1, high);
+    merge(array, low, mid, high);
+}
+
+function merge (array, low, mid, high) {
+    let temp = [];
+    let l = low;
+    let r = mid + 1;
+
+
+    // till I have elts on left and right. 
+    while (l <= mid && r <= high) {
+        
+
+        // Add the smaller elts first to temp
+        if (array[l] <= array[r]) {
+            temp.push(array[l]);
+            l++;
+        }
+        else {
+            temp.push(array[r]);
+            r++;
+        }
+
+    }
+
+    // Copy remaining elements from right and left. 
+    while (l <= mid) {
+        temp.push(array[l]);
+        l++;
+    }
+
+    while (r <= high) {
+        temp.push(array[r]);
+        r++;
+    }
+
+    // Copy elements from temp to original array:
+    for (let i = low; i <= high; i++) {
+        array[i] = temp[i - low];
+    }
+}
+
+let array = [5, 1, 0, 92, 15, 2, 4, 3, 2, 5, 1, 0, 55];
+mergeSort(array, 0, array.length - 1);
+console.log(array);
